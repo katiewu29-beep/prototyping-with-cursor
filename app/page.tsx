@@ -43,6 +43,11 @@ export default function Home() {
       description: 'An interactive button that creates a colorful confetti explosion',
       path: '/prototypes/confetti-button'
     },
+    {
+      title: 'PinkSynth',
+      description: 'A digital piano in classic Mac OS style, monochromatic pink',
+      path: '/prototypes/pink-piano'
+    },
   ];
 
   return (
