@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "fix-site": "bash scripts/fix-site.sh"
   },
   "dependencies": {
     "@types/canvas-confetti": "^1.9.0",

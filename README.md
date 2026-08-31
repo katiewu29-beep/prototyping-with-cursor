@@ -15,6 +15,25 @@ This is your personal prototyping workspace for the "Prototyping with Cursor" cl
    ```
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+## When the site breaks
+
+If you see server errors (for example `Cannot find module './627.js'`) or changes stop showing up in the browser, run:
+
+```bash
+npm run fix-site
+```
+
+This script will:
+1. Stop any old dev servers still running
+2. Clear the temporary cache (`.next` folder)
+3. Reinstall dependencies
+4. Verify the site builds
+5. Start a fresh dev server
+
+**Tip:** Always use the localhost URL printed in the terminal after running the script — don't rely on an old browser tab that might point at a stale server.
+
+**Don't run** `npm audit fix --force` — it can install an incompatible version of Next.js and make things worse.
+
 ## Creating a new prototype
 
 1. Open Composer Agent `(⌘-I)`

@@ -1,0 +1,271 @@
+/* Full-viewport calm atmosphere — cream base, Lee Dave–inspired */
+.calmBg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #f7f3ec;
+  overflow: hidden;
+  pointer-events: none;
+  /* Keep grain blend from affecting typed text above */
+  isolation: isolate;
+}
+
+/* Static gradient — blue at top, cream at bottom, behind grain */
+.shiftingGradient {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #b8d4e8 0%,
+    #d8e6f0 35%,
+    #f0e8dc 70%,
+    #f7f3ec 100%
+  );
+  filter: saturate(1.1);
+}
+
+/* SVG ocean waves — layered depth at bottom */
+.waves {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: min(48vh, 420px);
+  pointer-events: none;
+}
+
+.waveLayer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.waveTrack {
+  position: absolute;
+  left: 50%;
+  height: 100%;
+  will-change: transform;
+}
+
+/* Extra-wide + centered so drift never exposes L/R edges */
+.waveTrackMid {
+  width: 200%;
+  margin-left: -100%;
+  animation: waveDriftMid 10s ease-in-out infinite alternate;
+}
+
+.waveTrackFront {
+  width: 200%;
+  margin-left: -100%;
+  animation: waveDriftFront 7s ease-in-out infinite alternate;
+  animation-delay: -2s;
+}
+
+.waveSvg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mid — lighter swell behind */
+.waveMid {
+  height: 88%;
+  z-index: 1;
+}
+
+/* Front — darker, offset curve */
+.waveFront {
+  height: 52%;
+  z-index: 2;
+}
+
+/* Travel stays within overflow (±50% parent / 200% track ≈ ±25%; use ±14% margin) */
+@keyframes waveDriftMid {
+  from {
+    transform: translateX(-14%);
+  }
+  to {
+    transform: translateX(14%);
+  }
+}
+
+@keyframes waveDriftFront {
+  from {
+    transform: translateX(14%);
+  }
+  to {
+    transform: translateX(-14%);
+  }
+}
+
+/* Heavy grain overlay */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Typography — soft dusty blues; light halo for readability near waves */
+.text {
+  font-size: clamp(1.75rem, 4.5vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  margin: 0;
+  color: #4a6d88;
+  text-shadow:
+    0 0 12px rgba(247, 243, 236, 0.9),
+    0 1px 2px rgba(247, 243, 236, 0.8);
+}
+
+.hint {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: rgba(58, 95, 138, 0.55);
+  margin: 0;
+  letter-spacing: 0.06em;
+}
+
+.char {
+  display: inline-block;
+  color: #4a6d88;
+  animation: calmFloat 3.2s ease-in-out infinite;
+}
+
+.char:nth-child(even) {
+  color: #6a8eaa;
+  animation-duration: 3.8s;
+}
+
+.space {
+  display: inline-block;
+  width: 0.35em;
+}
+
+@keyframes calmFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.88;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* Controls tuned for light calm palette */
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  padding: 1.25rem 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: auto;
+  /* Soft fade only — don't cover the wave gradient with opaque cream */
+  background: linear-gradient(
+    to top,
+    rgba(247, 243, 236, 0.35) 0%,
+    rgba(247, 243, 236, 0.12) 40%,
+    transparent 100%
+  );
+}
+
+.tab {
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  border: 1px solid rgba(58, 95, 138, 0.35);
+  color: #1a2f4a;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(58, 95, 138, 0.5);
+  color: #1a2f4a;
+}
+
+.tabActive {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(58, 95, 138, 0.55);
+  color: #1a2f4a;
+  box-shadow: 0 1px 4px rgba(26, 47, 74, 0.12);
+}
+
+.input {
+  position: relative;
+  z-index: 1;
+  width: min(32rem, 100%);
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  color: #1a2f4a;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(58, 95, 138, 0.3);
+}
+
+.input::placeholder {
+  color: rgba(58, 95, 138, 0.45);
+}
+
+.input:focus {
+  border-color: rgba(58, 95, 138, 0.55);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.backButton {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: background 0.2s ease;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(58, 95, 138, 0.25);
+  color: #1a2f4a;
+}
+
+.backButton:hover {
+  background: rgba(126, 179, 232, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waveTrackMid,
+  .waveTrackFront,
+  .char {
+    animation: none;
+  }
+
+  .char {
+    opacity: 1;
+  }
+}

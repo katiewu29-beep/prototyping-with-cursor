@@ -48,6 +48,11 @@ export default function Home() {
       description: 'A digital piano in classic Mac OS style, monochromatic pink',
       path: '/prototypes/pink-piano'
     },
+    {
+      title: 'Typography',
+      description: 'Type live text in two CSS-only styles: calm and chaotic',
+      path: '/prototypes/typography'
+    },
   ];
 
   return (
