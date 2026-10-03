@@ -4,8 +4,8 @@ import { instrumentSans, outfit } from './fonts';
 
 const TITLE_TEXT = "Katie's prototypes";
 
-/** Toggle cloud atmosphere on/off to compare looks — set to true to show clouds.jpeg wash */
-const SHOW_CLOUD_WASH = false;
+/** Soft sky photo behind the cards (public/playground/clouds.jpeg). */
+const SHOW_CLOUD_WASH = true;
 
 function GlassHeart() {
   return (
@@ -53,10 +53,15 @@ export default function Home() {
       description: 'Type live text in two CSS-only styles: calm and chaotic',
       path: '/prototypes/typography'
     },
+    {
+      title: 'Noted OS',
+      description: 'Doodle notebook: rounded notes, stickers, text and sketches',
+      path: '/prototypes/noted-os'
+    },
   ];
 
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${SHOW_CLOUD_WASH ? styles.pageSky : ""}`}>
       {SHOW_CLOUD_WASH && (
         <div className={styles.cloudWash} aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}

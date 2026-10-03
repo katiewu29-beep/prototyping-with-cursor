@@ -1,0 +1,768 @@
+/* Noted OS — doodle notebook: cream desk, rounded notes, crayon stickers. */
+
+.os {
+  --ink: #1c1c1c;
+  --muted: #6b6570;
+  --cream: #fbf8f3;
+  --card: #ffffff;
+  --dusty: #8f84b0;
+  --yellow: #f2d048;
+  --blue: #3b6fd4;
+  --pink: #f47aa8;
+  --rule: rgba(28, 28, 28, 0.08);
+  --menubar-h: 42px;
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--dusty);
+  font-family: var(--font-ui, Nunito), system-ui, sans-serif;
+  user-select: none;
+}
+
+.wallpaper {
+  display: none;
+}
+
+.vignette {
+  display: none;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: inherit;
+  background-image:
+    linear-gradient(rgba(143, 132, 176, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(143, 132, 176, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.boot {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.35rem;
+  height: 100vh;
+  color: #f7f3ff;
+  text-align: center;
+}
+
+.boot h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.boot p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.menubar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: var(--menubar-h);
+  padding: 0 0.85rem;
+  color: #f7f3ff;
+  background: transparent;
+}
+
+.atlasLink {
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: #f7f3ff;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+}
+
+.atlasLink:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.barActions {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 100%;
+  padding-left: 0.45rem;
+  margin-left: 0.1rem;
+}
+
+.barBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 30px;
+  min-height: 30px;
+  padding: 0 0.7rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #f7f3ff;
+  font-family: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+}
+
+.barBtn:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.barBtnOn {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.barIcon {
+  display: inline-flex;
+  color: currentColor;
+  line-height: 0;
+  opacity: 0.9;
+}
+
+.menuStatus {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(247, 243, 255, 0.62);
+}
+
+.savedOn {
+  color: var(--yellow);
+}
+
+.desktop {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+
+.deskArtClip {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.deskDoodles {
+  position: absolute;
+  inset: 0;
+}
+
+.deskStickers {
+  position: absolute;
+  inset: 0;
+}
+
+.waves {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.doodleFlower {
+  position: absolute;
+  top: 6%;
+  left: 34%;
+  width: min(210px, 22vw);
+  height: auto;
+}
+
+.doodleBloom {
+  position: absolute;
+  top: auto;
+  right: 4%;
+  bottom: 5%;
+  width: min(176px, 18vw);
+  height: auto;
+  transform: rotate(-12deg);
+}
+
+.doodlePlane {
+  position: absolute;
+  top: 8%;
+  left: 56%;
+  width: 64px;
+  transform: rotate(14deg);
+}
+
+.doodlePencil {
+  position: absolute;
+  bottom: 18%;
+  left: 42%;
+  width: 86px;
+  /* Tip points down-right, not fully vertical (90deg). */
+  transform: rotate(68deg);
+}
+
+.midStar {
+  position: absolute;
+  top: 40%;
+  left: 56%;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: var(--yellow);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(40, 32, 60, 0.1);
+  transform: rotate(14deg);
+  font-size: 1.15rem;
+  color: #fff8dc;
+}
+
+.midSquiggle {
+  position: absolute;
+  top: 46%;
+  left: 70%;
+  width: 88px;
+  height: auto;
+  transform: rotate(-8deg);
+}
+
+.letter {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-family: var(--font-doodle, "Patrick Hand"), cursive;
+  font-size: 1.55rem;
+  line-height: 1;
+  box-shadow: 0 4px 0 rgba(28, 28, 28, 0.08);
+}
+
+.green {
+  background: #d8efc4;
+  color: #3d7a3a;
+}
+
+.pink {
+  background: #f8d0e4;
+  color: #c44d7a;
+}
+
+.blue {
+  background: #d4e4fb;
+  color: var(--blue);
+}
+
+.letterN {
+  top: 5%;
+  left: 26%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.8rem;
+  transform: rotate(-10deg);
+}
+
+.letterO {
+  top: 64%;
+  left: 22%;
+  width: 34px;
+  height: 34px;
+  font-size: 1.25rem;
+  transform: rotate(12deg);
+}
+
+.letterS {
+  top: 22%;
+  right: 20%;
+  left: auto;
+  transform: rotate(8deg);
+}
+
+.planetSticker {
+  position: absolute;
+  top: 50%;
+  left: 12%;
+  width: 48px;
+  transform: rotate(-16deg);
+  filter: drop-shadow(0 6px 8px rgba(40, 32, 60, 0.12));
+}
+
+.buddySticker {
+  position: absolute;
+  left: 6%;
+  bottom: 8%;
+  width: 92px;
+  padding: 0.5rem 0.45rem 0.35rem;
+  background: #cfc8f4;
+  border-radius: 22px;
+  transform: rotate(-8deg);
+  box-shadow: 0 8px 18px rgba(40, 32, 60, 0.1);
+}
+
+.buddy {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Rounded note card. Overflow stays visible so the star sticker can hang off a corner. */
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  /* Stay on the cream when the browser is narrower than a note. */
+  min-width: min(280px, calc(100% - 16px));
+  min-height: min(200px, calc(100% - 16px));
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 16px);
+  overflow: hidden;
+  background: var(--card);
+  border: 0;
+  border-radius: 28px;
+  box-shadow: 0 10px 28px rgba(40, 32, 60, 0.12);
+}
+
+.windowMax {
+  min-width: 0;
+  min-height: 0;
+  max-width: none;
+  max-height: none;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.windowMin {
+  height: auto !important;
+  min-height: 0;
+}
+
+.resizeHandle {
+  position: absolute;
+  z-index: 5;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  touch-action: none;
+}
+
+.resizeHandle[data-resize-corner="nw"] {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resizeHandle[data-resize-corner="ne"] {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resizeHandle[data-resize-corner="sw"] {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.resizeHandle[data-resize-corner="se"] {
+  right: 0;
+  bottom: 0;
+  width: 22px;
+  height: 22px;
+  cursor: nwse-resize;
+}
+
+.titleBar {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 40px;
+  padding: 0 0.55rem 0 0.85rem;
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  border-radius: 28px 28px 0 0;
+  cursor: grab;
+  touch-action: none;
+}
+
+.titleBar:active {
+  cursor: grabbing;
+}
+
+.windowControls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+  z-index: 6;
+  margin-left: auto;
+}
+
+.winBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.winBtnIcon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.winBtn:hover {
+  background: rgba(28, 28, 28, 0.06);
+}
+
+.titleBar .windowTitle,
+.titleBar .titleRename {
+  flex: 1;
+  min-width: 0;
+}
+
+.windowTitle {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: inherit;
+  text-align: left;
+  cursor: text;
+  user-select: none;
+}
+
+.titleRename {
+  height: 1.5rem;
+  margin: 0;
+  padding: 0 0.2rem;
+  border: 0;
+  border-bottom: 2px solid var(--yellow);
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  outline: none;
+  cursor: text;
+  user-select: text;
+}
+
+.windowBody {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: transparent;
+  border-radius: 0 0 28px 28px;
+}
+
+.starSticker {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 9;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  background: var(--yellow);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(40, 32, 60, 0.12);
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.windowStar .titleBar {
+  padding-left: 2.7rem;
+}
+
+.star {
+  font-size: 1.25rem;
+  color: #fff8dc;
+  text-shadow: 0 1px 0 #d4b43a;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.28rem 0.65rem 0.32rem;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.65rem;
+  height: 1.7rem;
+  padding: 0 0.36rem;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  opacity: 0.72;
+  cursor: pointer;
+}
+
+.glyphBtn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+}
+
+.toolIcon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.listBtn {
+  width: 28px;
+  min-width: 28px;
+  height: 26px;
+  padding: 2px;
+}
+
+.listIcon {
+  display: block;
+  width: 20px;
+  height: 18px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.toolBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.toolBtn:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(28, 28, 28, 0.06);
+}
+
+.toolBtnOn {
+  opacity: 1;
+  background: rgba(242, 208, 72, 0.45);
+}
+
+.headingMark {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.headingLevel {
+  font-size: 0.68em;
+  font-weight: 800;
+  margin-left: 0.04em;
+}
+
+.paragraphMark {
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+  display: block;
+  transform: translateY(-0.16em);
+}
+
+.toolRule {
+  width: 1px;
+  height: 1.1rem;
+  background: var(--rule);
+  margin: 0 0.2rem;
+}
+
+.swatches,
+.widths {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(28, 28, 28, 0.18);
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.swatchOn {
+  box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--ink);
+}
+
+.widthDot {
+  display: block;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.editor {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.85rem 1.15rem 1.2rem;
+  font-family: var(--font-ui, Nunito), system-ui, sans-serif;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink);
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.editor :global(*) {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.editor :global(b),
+.editor :global(strong) {
+  font-weight: 800;
+}
+
+.editor :global(i),
+.editor :global(em) {
+  font-style: italic;
+}
+
+.editor :global(h1),
+.editor :global(h2) {
+  font-family: var(--font-doodle, "Patrick Hand"), cursive;
+  font-size: 1.85rem;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0.15rem 0 0.45rem;
+}
+
+.editor :global(h1) :global(b),
+.editor :global(h1) :global(strong),
+.editor :global(h2) :global(b),
+.editor :global(h2) :global(strong) {
+  font-synthesis: weight;
+  font-weight: 700;
+}
+
+.editor :global(h1) :global(i),
+.editor :global(h1) :global(em),
+.editor :global(h2) :global(i),
+.editor :global(h2) :global(em) {
+  font-synthesis: style;
+  font-style: italic;
+}
+
+.editor :global(p) {
+  margin: 0.35rem 0;
+}
+
+.editor :global(ul),
+.editor :global(ol) {
+  margin: 0.4rem 0 0.4rem 1.35rem;
+}
+
+.canvasWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: transparent;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  max-width: none;
+}
+
+.canvasHint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  pointer-events: none;
+  font-family: var(--font-doodle, "Patrick Hand"), cursive;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  color: #9a96a3;
+}
+
+@media (max-width: 800px) {
+  .deskStickers {
+    display: none;
+  }
+}

@@ -1,0 +1,604 @@
+/*
+ * SAVED SNAPSHOT — 21 Sep 2026
+ * This is the planetary-chart look for Noted OS (warm paper sheets,
+ * Baskerville UI, thin chart-top bar). It is not imported anywhere.
+ * To restore: copy this file over styles.module.css.
+ *
+ * Noted OS — paper sheets sitting on the planetary chart.
+ */
+
+.os {
+  --ink: #2a2418;
+  --paper: #e6d4b0;
+  --paper-photo: url("/prototypes/noted-os/notedospaper.png");
+  --paper-wash: rgba(228, 204, 158, 0.45);
+  --paper-shadow: rgba(24, 18, 10, 0.28);
+  --chart-cream: #f3ead6;
+  --teal: #3f585c;
+  --rule: rgba(42, 36, 24, 0.12);
+  --hand: var(--font-hand), Italianno, "Palatino Linotype", Palatino, cursive;
+  --menubar-h: 38px;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--ink);
+  background: #1a1410;
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  user-select: none;
+}
+
+.wallpaper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    url("/prototypes/noted-os/planetary-chart.png") center / cover no-repeat;
+}
+
+/* Soft edge so corner sheets read, without muting the central chart. */
+.vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, transparent 62%, rgba(18, 12, 8, 0.22) 100%);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(44, 39, 31, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(44, 39, 31, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 var(--menubar-h);
+}
+
+.boot {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.35rem;
+  height: 100vh;
+  color: var(--paper);
+  text-align: center;
+}
+
+.boot h1 {
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--chart-cream);
+}
+
+.boot p {
+  font-size: 0.8rem;
+  opacity: 0.85;
+}
+
+.menubar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: var(--menubar-h);
+  padding: 0 0.75rem;
+  color: var(--chart-cream);
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 10, 6, 0.38) 0%,
+    rgba(14, 10, 6, 0.08) 100%
+  );
+  box-shadow: none;
+}
+
+.atlasLink {
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--chart-cream);
+  padding: 0.15rem 0.3rem;
+}
+
+.atlasLink:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.barActions {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  height: 100%;
+  padding-left: 0.5rem;
+  margin-left: 0.15rem;
+  border-left: 1px solid rgba(243, 234, 214, 0.28);
+}
+
+.barBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  height: 30px;
+  min-height: 30px;
+  padding: 0 0.45rem;
+  border: 0;
+  background: transparent;
+  color: var(--chart-cream);
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.barBtn:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.barBtnOn {
+  box-shadow: inset 0 -1px 0 var(--chart-cream);
+}
+
+.barIcon {
+  display: inline-flex;
+  color: var(--chart-cream);
+  line-height: 0;
+  opacity: 0.8;
+}
+
+.menuStatus {
+  margin-left: auto;
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.72rem;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: rgba(243, 234, 214, 0.62);
+}
+
+.savedOn {
+  font-style: italic;
+  color: #e4d6a4;
+}
+
+.desktop {
+  position: relative;
+  z-index: 5;
+  height: calc(100vh - var(--menubar-h));
+  overflow: hidden;
+}
+
+/* A sheet warmed toward the chart’s cream, lifted by a quiet contact shadow. */
+.window {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  min-height: 200px;
+  overflow: hidden;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--paper-wash), var(--paper-wash)),
+    var(--paper-photo);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(58, 44, 22, 0.18);
+  box-shadow:
+    0 1px 1px rgba(28, 18, 8, 0.08),
+    0 10px 28px var(--paper-shadow);
+}
+
+/* Folded corner — a physical cue that the sheet can be pulled. */
+.window::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 16px 16px;
+  border-color: transparent transparent #b89a62 rgba(70, 52, 24, 0.16);
+  box-shadow: -1px -1px 0 rgba(58, 44, 22, 0.08);
+  pointer-events: none;
+}
+
+.windowMax {
+  min-width: 0;
+  min-height: 0;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 6px 18px var(--paper-shadow);
+}
+
+.windowMax::after,
+.windowMin::after {
+  display: none;
+}
+
+.windowMin {
+  height: auto !important;
+  min-height: 0;
+}
+
+.resizeHandle {
+  position: absolute;
+  z-index: 5;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  appearance: none;
+  touch-action: none;
+}
+
+.resizeHandle[data-resize-corner="nw"] {
+  top: 0;
+  left: 0;
+  cursor: nwse-resize;
+}
+
+.resizeHandle[data-resize-corner="ne"] {
+  top: 0;
+  right: 0;
+  cursor: nesw-resize;
+}
+
+.resizeHandle[data-resize-corner="sw"] {
+  bottom: 0;
+  left: 0;
+  cursor: nesw-resize;
+}
+
+.resizeHandle[data-resize-corner="se"] {
+  right: 0;
+  bottom: 0;
+  width: 22px;
+  height: 22px;
+  cursor: nwse-resize;
+}
+
+.titleBar {
+  position: relative;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  height: 40px;
+  padding: 0 0.7rem 0 0.45rem;
+  background: transparent;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule);
+  cursor: grab;
+  touch-action: none;
+}
+
+.titleBar:active {
+  cursor: grabbing;
+}
+
+.windowControls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  position: relative;
+  z-index: 6;
+}
+
+.winBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.winBtnIcon {
+  display: block;
+  width: 12px;
+  height: 12px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.winBtn:hover {
+  opacity: 0.55;
+}
+
+.titleBar .windowTitle,
+.titleBar .titleRename {
+  flex: 1;
+  min-width: 0;
+}
+
+.windowTitle {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  cursor: grab;
+  user-select: none;
+}
+
+.titleRename {
+  height: 1.5rem;
+  margin: 0;
+  padding: 0 0.2rem;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.88rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  outline: none;
+  cursor: text;
+  user-select: text;
+}
+
+.windowBody {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: transparent;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.22rem 0.55rem 0.28rem;
+  border-bottom: 1px solid var(--rule);
+  background: transparent;
+}
+
+.toolBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.65rem;
+  height: 1.6rem;
+  padding: 0 0.32rem;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.72rem;
+  opacity: 0.72;
+  cursor: pointer;
+}
+
+.glyphBtn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 0;
+}
+
+.toolIcon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.listBtn {
+  width: 28px;
+  min-width: 28px;
+  height: 26px;
+  padding: 2px;
+}
+
+.listIcon {
+  display: block;
+  width: 20px;
+  height: 18px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.toolBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.toolBtn:hover:not(:disabled) {
+  opacity: 1;
+  background: rgba(42, 36, 24, 0.06);
+}
+
+.toolBtnOn {
+  opacity: 1;
+  box-shadow: inset 0 -1px 0 var(--ink);
+}
+
+.headingMark {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.headingLevel {
+  font-size: 0.68em;
+  font-weight: 700;
+  margin-left: 0.04em;
+}
+
+.paragraphMark {
+  font-size: 1.05rem;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+  display: block;
+  transform: translateY(-0.16em);
+}
+
+.toolRule {
+  width: 1px;
+  height: 1.1rem;
+  background: var(--rule);
+  margin: 0 0.2rem;
+}
+
+.swatches,
+.widths {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(44, 39, 31, 0.32);
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.swatchOn {
+  box-shadow: 0 0 0 2px var(--paper), 0 0 0 3px var(--ink);
+}
+
+.widthDot {
+  display: block;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.editor {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 0.85rem 1.15rem 1.2rem;
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+  cursor: text;
+}
+
+.editor :global(*) {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.editor :global(b),
+.editor :global(strong) {
+  font-weight: 700;
+}
+
+.editor :global(i),
+.editor :global(em) {
+  font-style: italic;
+}
+
+.editor :global(h1),
+.editor :global(h2) {
+  font-family: var(--hand);
+  font-size: 1.85rem;
+  font-weight: 400;
+  font-synthesis: none;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0.15rem 0 0.45rem;
+}
+
+.editor :global(h1) :global(b),
+.editor :global(h1) :global(strong),
+.editor :global(h2) :global(b),
+.editor :global(h2) :global(strong) {
+  font-synthesis: weight;
+  font-weight: 700;
+}
+
+.editor :global(h1) :global(i),
+.editor :global(h1) :global(em),
+.editor :global(h2) :global(i),
+.editor :global(h2) :global(em) {
+  font-synthesis: style;
+  font-style: italic;
+}
+
+.editor :global(p) {
+  margin: 0.35rem 0;
+}
+
+.editor :global(ul),
+.editor :global(ol) {
+  margin: 0.4rem 0 0.4rem 1.35rem;
+}
+
+.canvasWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: transparent;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  max-width: none;
+}
+
+.canvasHint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  pointer-events: none;
+  font-family: var(--font-folio), "Libre Baskerville", Palatino, serif;
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(42, 36, 24, 0.38);
+}
