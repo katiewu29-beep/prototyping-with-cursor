@@ -58,7 +58,11 @@ export const specialElite = Special_Elite({
 });
 
 /** One voice per category — 7 distinct type personalities */
-export const chaoticWordProfiles = [
+export const chaoticWordProfiles: readonly {
+  className: string;
+  lineHeight: number;
+  sizeScale?: number;
+}[] = [
   { className: greatVibes.className, lineHeight: 1.2, sizeScale: 1.35 }, // script
   { className: bebasNeue.className, lineHeight: 0.88 }, // condensed display
   { className: jetbrainsMono.className, lineHeight: 1 }, // monospace
@@ -66,4 +70,4 @@ export const chaoticWordProfiles = [
   { className: libreBaskerville.className, lineHeight: 1.15 }, // serif
   { className: unifrakturMaguntia.className, lineHeight: 1.05 }, // blackletter
   { className: specialElite.className, lineHeight: 1.05 }, // typewriter
-] as const;
+];
