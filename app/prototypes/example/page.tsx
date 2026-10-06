@@ -1,11 +1,14 @@
 "use client";
 
 import styles from './styles.module.css';
-import { Geist } from 'next/font/google';
+import localFont from 'next/font/local';
 import Link from 'next/link';
 import { useState, useRef } from 'react';
 
-const geist = Geist({ subsets: ['latin'] });
+const geist = localFont({
+  src: '../../font-files/geist.woff2',
+  weight: '100 900',
+});
 
 const THEMES = {
   blue: {

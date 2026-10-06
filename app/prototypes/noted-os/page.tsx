@@ -6,7 +6,7 @@
  */
 
 import Link from "next/link";
-import { Nunito, Patrick_Hand } from "next/font/google";
+import localFont from "next/font/local";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import DeskDoodles from "./DeskDoodles";
 import SketchPad from "./SketchPad";
@@ -26,15 +26,15 @@ import {
 import styles from "./styles.module.css";
 
 /** Rounded, friendly UI type for menus, titles, and body text. */
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+const nunito = localFont({
+  src: "../../font-files/nunito.woff2",
+  weight: "400 800",
   variable: "--font-ui",
 });
 
 /** Hand-lettered look for in-note headings only. */
-const doodle = Patrick_Hand({
-  subsets: ["latin"],
+const doodle = localFont({
+  src: "../../font-files/patrick-hand.woff2",
   weight: "400",
   variable: "--font-doodle",
 });

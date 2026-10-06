@@ -1,58 +1,50 @@
-import {
-  Bebas_Neue,
-  Fraunces,
-  Great_Vibes,
-  JetBrains_Mono,
-  Libre_Baskerville,
-  Permanent_Marker,
-  Special_Elite,
-  UnifrakturMaguntia,
-} from "next/font/google";
+import localFont from "next/font/local";
 
-export const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["300", "400"],
+// Self-hosted (see app/font-files) so builds never fetch from Google Fonts.
+export const fraunces = localFont({
+  src: "../../font-files/fraunces.woff2",
+  weight: "300 400",
   display: "swap",
 });
 
-export const greatVibes = Great_Vibes({
-  subsets: ["latin"],
+export const greatVibes = localFont({
+  src: "../../font-files/great-vibes.woff2",
   weight: "400",
   display: "swap",
 });
 
-export const permanentMarker = Permanent_Marker({
-  subsets: ["latin"],
+export const permanentMarker = localFont({
+  src: "../../font-files/permanent-marker.woff2",
   weight: "400",
   display: "swap",
 });
 
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["500", "700"],
+export const jetbrainsMono = localFont({
+  src: "../../font-files/jetbrains-mono.woff2",
+  weight: "500 700",
   display: "swap",
 });
 
-export const bebasNeue = Bebas_Neue({
-  subsets: ["latin"],
+export const bebasNeue = localFont({
+  src: "../../font-files/bebas-neue.woff2",
   weight: "400",
   display: "swap",
 });
 
-export const libreBaskerville = Libre_Baskerville({
-  subsets: ["latin"],
+export const libreBaskerville = localFont({
+  src: "../../font-files/libre-baskerville.woff2",
   weight: "400",
   display: "swap",
 });
 
-export const unifrakturMaguntia = UnifrakturMaguntia({
-  subsets: ["latin"],
+export const unifrakturMaguntia = localFont({
+  src: "../../font-files/unifraktur-maguntia.woff2",
   weight: "400",
   display: "swap",
 });
 
-export const specialElite = Special_Elite({
-  subsets: ["latin"],
+export const specialElite = localFont({
+  src: "../../font-files/special-elite.woff2",
   weight: "400",
   display: "swap",
 });

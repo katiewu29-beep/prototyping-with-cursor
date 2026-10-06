@@ -1,13 +1,14 @@
-import { Instrument_Sans, Outfit } from 'next/font/google';
+import localFont from 'next/font/local';
 
-export const instrumentSans = Instrument_Sans({
-  subsets: ['latin'],
+// Self-hosted (see app/font-files) so builds never fetch from Google Fonts.
+export const instrumentSans = localFont({
+  src: './font-files/instrument-sans.woff2',
+  weight: '400 700',
   display: 'swap',
 });
 
-export const outfit = Outfit({
-  subsets: ['latin'],
+export const outfit = localFont({
+  src: './font-files/outfit.woff2',
+  weight: '400 500',
   display: 'swap',
-  weight: ['400', '500'],
 });
- 
