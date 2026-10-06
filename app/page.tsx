@@ -34,16 +34,6 @@ function GlassSphere() {
 export default function Home() {
   const prototypes = [
     {
-      title: 'Getting started',
-      description: 'How to create a prototype',
-      path: '/prototypes/example'
-    },
-    {
-      title: 'Confetti button',
-      description: 'An interactive button that creates a colorful confetti explosion',
-      path: '/prototypes/confetti-button'
-    },
-    {
       title: 'PinkSynth',
       description: 'A digital piano in classic Mac OS style, monochromatic pink',
       path: '/prototypes/pink-piano'
