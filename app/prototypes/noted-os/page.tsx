@@ -5,7 +5,7 @@
  * This page is the desk: a top strip of tools, crayon decorations, and the notes.
  */
 
-import Link from "next/link";
+import BackLink from "@/app/components/BackLink";
 import localFont from "next/font/local";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import DeskDoodles from "./DeskDoodles";
@@ -360,9 +360,9 @@ export default function NotedOSPrototype() {
   return (
     <div className={`${styles.os} ${nunito.variable} ${doodle.variable}`}>
       <header className={styles.menubar}>
-        <Link href="/" className={styles.atlasLink}>
+        <BackLink className={styles.atlasLink}>
           ← Prototypes
-        </Link>
+        </BackLink>
 
         <div className={styles.barActions} aria-label="Notebook actions">
           <button type="button" className={styles.barBtn} onClick={() => spawn("folio")}>

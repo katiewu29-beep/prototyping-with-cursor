@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import BackLink from "@/app/components/BackLink";
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import styles from "./styles.module.css";
 
@@ -712,7 +712,7 @@ export default function PinkPianoPrototype() {
       onMouseLeave={onDesktopMouseUp}
     >
       <div className={styles.buttonContainer}>
-        <Link href="/" className={styles.backButton} aria-label="Back to home">
+        <BackLink className={styles.backButton} aria-label="Back to home">
           <svg
             className={styles.backArrow}
             viewBox="0 0 12 12"
@@ -726,7 +726,7 @@ export default function PinkPianoPrototype() {
               d="M9 2v1H5V1L1 6l4 5V9h4v1h1V2H9z"
             />
           </svg>
-        </Link>
+        </BackLink>
       </div>
 
       <div className={styles.menubar}>

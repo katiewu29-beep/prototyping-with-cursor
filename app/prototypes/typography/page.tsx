@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import BackLink from "@/app/components/BackLink";
 import { useEffect, useRef, useState } from "react";
 import { CalmBackground, CalmDisplay } from "./CalmDisplay";
 import { ChaoticBackground, ChaoticDisplay } from "./ChaoticDisplay";
@@ -35,9 +35,9 @@ export default function TypographyPrototype() {
       {isCalm && <CalmBackground />}
       {!isCalm && <ChaoticBackground />}
 
-      <Link href="/" className={backButtonClass} aria-label="Back to home">
+      <BackLink className={backButtonClass} aria-label="Back to home">
         ←
-      </Link>
+      </BackLink>
 
       <div className={styles.displayArea}>
         <div className={styles.displayContent}>
